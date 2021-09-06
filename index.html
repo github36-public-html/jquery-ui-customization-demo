@@ -1,436 +1,1691 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv=Content-Type content="text/html;charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="ui.css" />
-
+<title></title>
+<link rel="stylesheet" href="crypto_ui_3.css"> 
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jquery-ui.js"></script>
 <link rel="stylesheet" href="jquery-ui.css">
-<script type="text/javascript" src="jquery.min.js"></script>
-<script type="text/javascript" src="jquery-ui.min.js"></script>
 
-<!-- 
-Это пробный, тестовый пример, сделанный в 2017 году.
-Ничего не вынесено в отдельный css, никакой декомпозиции и методологии.
-Часть верстки сделана "на таблице". Это просто тест кастомизации.
-Главное, что это работает.
--->
+<script type="text/javascript" src="jquery.arcticmodal-0.3.min.js"></script>
+
+<script type="text/javascript" src="jgrowl.js"></script>
+<link rel="stylesheet" href="jgrowl.css">
 
 
-<body bgcolor="#01113B" >
+<meta http-equiv=Content-Type content="text/html;charset=UTF-8">
 
+<style type="text/css">
+.element_table {border-collapse: collapse; color: #ffffff;} 
+.element_table td, th {padding: 6px; border:1px solid #656565; }
+.element_table_caption {font-family: Arial; color: #ffffff; width:11rem;}
+.element_table_description {font-family: Arial; font-size:10px; color: #ffffff;}
+.element_textarea {
+font-family: Arial; font-size:10px; color: #ffffff;
+resize:none;
+outline:none;
+background-color: transparent;
+width:20px;
+height:10px;
+overflow:hidden;
+
+position: relative;
+display: inline-block;
+top: 3px;
+}
+
+</style>
+
+</head>
+<body bgcolor="#1c262d">
+<div class="page_content">
 
 
 <script>
-/*
-Русификация и настройки календаря
-*/
-jQuery(function($){
-	$.datepicker.regional['ru'] = {
-		closeText: 'Закрыть',
-		prevText: '&#x3c;Пред',
-		nextText: 'След&#x3e;',
-		currentText: 'Сегодня',
-		monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь',
-		'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
-		monthNamesShort: ['Январь','Февраль','Март','Апрель','Май','Июнь',
-		'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
-		dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
-		dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
-		dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
-		weekHeader: 'Не',
-		dateFormat: 'dd.mm.yy',
-		firstDay: 1,
-		isRTL: false,
-		showMonthAfterYear: false,
-		yearSuffix: ''};
-	$.datepicker.setDefaults($.datepicker.regional['ru']);
-});
-
-
-$(document).ready(function()
+$(document).ready(function() 
 {
 
-$(".datapicker_from_10_years_past_to_now").datepicker({buttonImage:"calendar.png",buttonText: "Календарь", showOn:"both", buttonImageOnly:true,changeMonth:true,changeYear:true,minDate:-43800,maxDate:0,yearRange:"2007:2018"});
+//Копирование кода в буфер из textarea
+$('.page_content').on('click', '.element_textarea', function(){
+this.select();
+document.execCommand('copy');
+});
+
+
+//Показ всплывающего сообщения
+$(document).on('click', '.show_jgrowl_message', function(){
+var data=$(this).attr('data');
+
+if (data=='') {$.jGrowl('Hello world!')};
+if (data=='ok') {$.jGrowl('Hello world!',{ theme: 'ok_theme'})};
+if (data=='error') {$.jGrowl('Hello world!',{ theme: 'error_theme'})};
+
 
 });
 
 
 
 
+});
 </script>
 
 
-<div class="ui_window_1_out" style="width:800px;height:1400px;">
-<div class="ui_window_1_in">
-<div class="ui_window_1_header">Авторизация</div>
-<div class="ui_window_1_content">
-<input type="text" name="text_field" class="ui_input_type_text_1" style="width:110px;">
+<!-- Функция вызова модального окна с передачей в него параметров -->
+<script>
+$(function(){
+$('.open_modal_window').on('click', function(){
+$('.modal_window_container').arcticmodal();
+<!-- Передаем id нажатой ссылки вызываемому скрипту -->
+//$('.modal_window_content').load('www.google.com&id='+this.id);
+return false;
+});
+})
+</script>
 
 
-
-
-
-<a href="#" class="ui_link_button_1">Кнопка 1</a> 
-<a href="#" class="ui_link_button_3">Кнопка 3</a>
-
-
-<div class="ui_select_1">
-<select class="ui_real_select" style="width:200px;">
-<option>Choose an option</option>
-<option value="1">Pure CSS</option>
-<option value="2">No JS</option>
-<option value="3">Nice!</option>
-</select>
+<!-- Модальное окно. В это окно будет загружен код. -->
+<div style="display:none;">
+<div class="modal_window_container crypto_ui_3-box_modal">
+<div class="crypto_ui_3-box_modal_close arcticmodal-close">&times;</div>
+<div class="modal_window_content crypto_ui_3-box_modal_window_content">
+Текст модального окна Текст модального окна Текст модального окна<br>
+Текст модального окна Текст модального окна Текст модального окна<br>
+Текст модального окна Текст модального окна Текст модального окна<br>
+Текст модального окна Текст модального окна Текст модального окна<br>
+</div>
+</div>
 </div>
 
-<a href="#"><span class="ui_close_symbol_1"></span></a>
-
-<br><br>
-Текст 
-<font class="ui_bold_text_1">Жирный текст</font>
-<font class="ui_color_text_1">Цветной текст 1</font>
 
 
-<br><br>
-<!-- Пробелы и переносы строк влияют на расположение (сдвиг) инпут и дивов. Для позиции вплотную надо писать код без переноса строки в одну линию.-->
-<a href="#"><div class="ui_arrow_button_out_1"><div class="ui_left_arrow_button_1_in"></div></div></a>
-<input type="text" name="date_begin" class="ui_datapicker_1 datapicker_from_10_years_past_to_now " value="01.01.2018">&nbsp;
-<a href="#"><div class="ui_arrow_button_out_1"><div class="ui_right_arrow_button_1_in"></div></div></a>
-<a href="#" class="ui_link_button_2">Кнопка 2</a>
-<a href="#" class="ui_link_button_4">Кнопка 4</a>
-
-<div class="ui_select_2">
-<select class="ui_real_select" style="width:200px;">
-<option>Choose an option</option>
-<option value="1">Pure CSS</option>
-<option value="2">No JS</option>
-<option value="3">Nice!</option>
-</select>
-</div>
-<br><br>
-
-
-<table cellpadding="4">
+<p>
+<table class="element_table">
+<tbody>
 <tr>
+<td class="element_table_caption" rowspan="2">Окно</td>
+<td> 
+<div class="crypto_ui_3-window_1">
+<div class="crypto_ui_3-window_1_title">
+Заголовок окна
+</div>
+Содержимое окна
+</div>
+</td>
+<td>
+Окно по центру страницы
+</td>
+</tr>
+<tr>
+<td class="element_table_description">
+Обычное окно
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-window_1">
+<div class="crypto_ui_3-window_1_title">
+Заголовок окна
+</div>
+Содержимое окна
+</div>
+</textarea>
+]
+</td>			
+<td class="element_table_description">
+Окно по центру страницы
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-window_2">
+<div class="crypto_ui_3-window_2_title">
+Заголовок окна
+</div>
+Содержимое окна
+</div>
+</textarea>
+]
+</td>	
+</tr>
+</tbody>
+</table>
+</p>
+
+
+
+
+<p>
+<table class="element_table">
+<tbody>
+<tr>
+<td class="element_table_caption" rowspan="2">Кнопка - ссылка</td>
+<td> <a class="crypto_ui_3-button_1">Текст кнопки</a> </td>
+<td> <a class="crypto_ui_3-button_2">Текст кнопки</a> </td>
+</tr>
+<tr>
+<td class="element_table_description">
+Стандартная кнопка
+[Код
+<textarea class="element_textarea">
+<a class="crypto_ui_3-button_1">Текст кнопки</a>
+</textarea>
+]
+</td>			
+<td class="element_table_description">
+Кнопка размером с<br>поле ввода текста
+[Код
+<textarea class="element_textarea">
+<a class="crypto_ui_3-button_2">Текст кнопки</a>
+</textarea>
+]
+</td>
+</tr>
+</tbody>
+</table>
+</p>
+
+
+
+
+<p>
+<table class="element_table">
+<tbody>
+<tr>
+<td class="element_table_caption" rowspan="2">Ссылка</td>
+<td> <a href="" class="crypto_ui_3-link_1">Текст ссылки</a> </td>
+<td> <a href="" class="crypto_ui_3-link_1_dashed">Текст ссылки</a> </td>
+</tr>
+<tr>
+<td class="element_table_description">
+Стандартная cсылка
+[Код
+<textarea class="element_textarea">
+<a href="" class="crypto_ui_3-link_1">Текст ссылки</a>
+</textarea>
+]
+</td>			
+<td class="element_table_description">
+Ссылка для действия
+[Код
+<textarea class="element_textarea">
+ <a href="" class="crypto_ui_3-link_1_dashed">Текст ссылки</a>
+</textarea>
+]
+</td>	
+</tr>
+</tbody>
+</table>
+</p>
+
+
+<p>
+<table class="element_table">
+<tbody>
+<tr>
+<td class="element_table_caption" rowspan="2">Текстовое поле ввода</td>		
+<td> <input type="text" name="field_name" placeholder="текст" class="crypto_ui_3-input_type_text"> </td>
+<td> <input type="text" name="field_name" placeholder="текст" class="crypto_ui_3-input_type_text_1"> </td>
+<td> <input type="text" name="field_name" placeholder="текст" class="crypto_ui_3-input_type_text_2"> </td>
+<td> <input type="text" name="field_name" placeholder="текст" class="crypto_ui_3-input_type_text_3"> </td>
+<td> <input type="text" name="field_name" placeholder="текст" class="crypto_ui_3-input_type_text_4"> </td>
+</tr>
+<tr>
+<td class="element_table_description">
+Поле ввода без размера
+[Код
+<textarea class="element_textarea">
+<input type="text" name="field_name" placeholder="текст" class="crypto_ui_3-input_type_text">
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Поле ввода (6.25rem/100px)
+[Код
+<textarea class="element_textarea">
+<input type="text" name="field_name" placeholder="текст" class="crypto_ui_3-input_type_text_1">
+</textarea>
+]
+</td>			
+<td class="element_table_description">
+Поле ввода (9.375rem/150px)
+[Код
+<textarea class="element_textarea">
+<input type="text" name="field_name" placeholder="текст" class="crypto_ui_3-input_type_text_2">
+</textarea>
+]
+</td>
+<td class="element_table_description">
+Поле ввода (12.5rem/200px)
+[Код
+<textarea class="element_textarea">
+<input type="text" name="field_name" placeholder="текст" class="crypto_ui_3-input_type_text_3">
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Поле ввода (15.625rem/250px)
+[Код
+<textarea class="element_textarea">
+<input type="text" name="field_name" placeholder="текст" class="crypto_ui_3-input_type_text_4">
+</textarea>
+]
+</td>	
+</tr>
+</tbody>
+</table>
+</p>
+
+<p>
+<table class="element_table">
+<tbody>
+<tr>
+<td class="element_table_caption" rowspan="2">Поле ввода пароля</td>		
+<td> <input type="password" name="field_name" placeholder="пароль" class="crypto_ui_3-input_type_text"> </td>
+<td> <input type="password" name="field_name" placeholder="пароль" class="crypto_ui_3-input_type_text_1"> </td>
+<td> <input type="password" name="field_name" placeholder="пароль" class="crypto_ui_3-input_type_text_2"> </td>
+<td> <input type="password" name="field_name" placeholder="пароль" class="crypto_ui_3-input_type_text_3"> </td>
+<td> <input type="password" name="field_name" placeholder="пароль" class="crypto_ui_3-input_type_text_4"> </td>
+</tr>
+<tr>
+<td class="element_table_description">
+Поле ввода без размера
+[Код
+<textarea class="element_textarea">
+<input type="password" name="field_name" placeholder="пароль" class="crypto_ui_3-input_type_text">
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Поле ввода (6.25rem/100px)
+[Код
+<textarea class="element_textarea">
+<input type="password" name="field_name" placeholder="пароль" class="crypto_ui_3-input_type_text_1">
+</textarea>
+]
+</td>			
+<td class="element_table_description">
+Поле ввода (9.375rem/150px)
+[Код
+<textarea class="element_textarea">
+<input type="password" name="field_name" placeholder="пароль" class="crypto_ui_3-input_type_text_2">
+</textarea>
+]
+</td>
+<td class="element_table_description">
+Поле ввода (12.5rem/200px)
+[Код
+<textarea class="element_textarea">
+<input type="password" name="field_name" placeholder="пароль" class="crypto_ui_3-input_type_text_3">
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Поле ввода (15.625rem/250px)
+[Код
+<textarea class="element_textarea">
+<input type="password" name="field_name" placeholder="пароль" class="crypto_ui_3-input_type_text_4">
+</textarea>
+]
+</td>	
+</tr>
+</tbody>
+</table>
+</p>
+
+
+
+
+
+
+<p>
+<table class="element_table">
+<tbody>
+<tr>
+<td class="element_table_caption" rowspan="2">Поле выбора select</td>
+		
+<td style="width:10rem;">
+<div class="crypto_ui_3-select">
+<select>
+<option>--Select--</option>
+<option>Hello 1</option>
+<option>Hello 2</option>
+<option>Hello 3</option>
+<option>Hello 4</option>
+</select>
+<div class="crypto_ui_3-select_arrow">
+</div>
+</div>
+</td>
+
+<td>
+<div class="crypto_ui_3-select_1">
+<select>
+<option>--Select--</option>
+<option>Hello 1</option>
+<option>Hello 2</option>
+<option>Hello 3</option>
+<option>Hello 4</option>
+</select>
+<div class="crypto_ui_3-select_1_arrow">
+</div>
+</div>
+</td>
+	
+<td>
+<div class="crypto_ui_3-select_2">
+<select>
+<option>--Select--</option>
+<option>Hello 1</option>
+<option>Hello 2</option>
+<option>Hello 3</option>
+<option>Hello 4</option>
+</select>
+<div class="crypto_ui_3-select_2_arrow">
+</div>
+</div>
+</td>			
+			
+<td>
+<div class="crypto_ui_3-select_3">
+<select>
+<option>--Select--</option>
+<option>Hello 1</option>
+<option>Hello 2</option>
+<option>Hello 3</option>
+<option>Hello 4</option>
+</select>
+<div class="crypto_ui_3-select_3_arrow">
+</div>
+</div>
+</td>
+
+<td>
+<div class="crypto_ui_3-select_4">
+<select>
+<option>--Select--</option>
+<option>Hello 1</option>
+<option>Hello 2</option>
+<option>Hello 3</option>
+<option>Hello 4</option>
+</select>
+<div class="crypto_ui_3-select_4_arrow">
+</div>
+</div>
+</td>
+
+<td>
+<select class="crypto_ui_3-select_5">
+<option id="bitfinex_ABS" color="00AEFF" style="color:#00AEFF;">ABS</option>
+<option id="bitfinex_ABS" color="FF0000" style="color:#FF0000;">ABS</option>
+<option id="bitfinex_ABS" color="C80000" style="color:#C80000;">ABS</option>
+<option id="bitfinex_ABS" color="FF6000" style="color:#FF6000;">ABS</option>
+<option id="bitfinex_ABS" color="C86000" style="color:#C86000;">ABS</option>
+<option id="bitfinex_ABS" color="FF9A00" style="color:#FF9A00;">ABS</option>
+<option id="bitfinex_ABS" color="C89A00" style="color:#C89A00;">ABS</option>
+<option id="bitfinex_ABS" color="FFCD00" style="color:#FFCD00;">ABS</option>
+<option id="bitfinex_ABS" color="C8CD00" style="color:#C8CD00;">ABS</option>
+<option id="bitfinex_ABS" color="FFFF00" style="color:#FFFF00;">ABS</option>
+<option id="bitfinex_ABS" color="FFC800" style="color:#FFC800;">ABS</option>
+<option id="bitfinex_ABS" color="C4FF00" style="color:#C4FF00;">ABS</option>
+<option id="bitfinex_ABS" color="C4C800" style="color:#C4C800;">ABS</option>
+<option id="bitfinex_ABS" color="00FF14" style="color:#00FF14;">ABS</option>
+<option id="bitfinex_ABS" color="00C814" style="color:#00C814;">ABS</option>
+<option id="bitfinex_ABS" color="00A5FF" style="color:#00A5FF;">ABS</option>
+<option id="bitfinex_ABS" color="00A5C8" style="color:#00A5C8;">ABS</option>
+<option id="bitfinex_ABS" color="004EFF" style="color:#004EFF;">ABS</option>
+<option id="bitfinex_ABS" color="004EC8" style="color:#004EC8;">ABS</option>
+<option id="bitfinex_ABS" color="3200FF" style="color:#3200FF;">ABS</option>
+<option id="bitfinex_ABS" color="3200C8" style="color:#3200C8;">ABS</option>
+<option id="bitfinex_ABS" color="B200FF" style="color:#B200FF;">ABS</option>
+<option id="bitfinex_ABS" color="B200C8" style="color:#B200C8;">ABS</option>
+<option id="bitfinex_ABS" color="FF0080" style="color:#FF0080;">ABS</option>
+<option id="bitfinex_ABS" color="C80080" style="color:#C80080;">ABS</option>
+</select>
+</td>
+
+
+</tr>
+<tr>
+<td class="element_table_description">
+Поле выбора без размера<br>
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-select">
+<select>
+<option>--Select--</option>
+<option>Hello 1</option>
+<option>Hello 2</option>
+<option>Hello 3</option>
+<option>Hello 4</option>
+</select>
+<div class="crypto_ui_3-select_arrow">
+</div>
+</div>
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Поле выбора (6.25rem/100px)<br>
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-select_1">
+<select>
+<option>--Select--</option>
+<option>Hello 1</option>
+<option>Hello 2</option>
+<option>Hello 3</option>
+<option>Hello 4</option>
+</select>
+<div class="crypto_ui_3-select_1_arrow">
+</div>
+</div>
+</textarea>
+]
+</td>			
+<td class="element_table_description">
+Поле выбора (9.375rem/150px)<br>
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-select_2">
+<select>
+<option>--Select--</option>
+<option>Hello 1</option>
+<option>Hello 2</option>
+<option>Hello 3</option>
+<option>Hello 4</option>
+</select>
+<div class="crypto_ui_3-select_2_arrow">
+</div>
+</div>
+</textarea>
+]
+</td>
+<td class="element_table_description">
+Поле выбора (12.5rem/200px)<br>
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-select_3">
+<select>
+<option>--Select--</option>
+<option>Hello 1</option>
+<option>Hello 2</option>
+<option>Hello 3</option>
+<option>Hello 4</option>
+</select>
+<div class="crypto_ui_3-select_3_arrow">
+</div>
+</div>
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Поле выбора (15.625rem/250px)<br>
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-select_4">
+<select>
+<option>--Select--</option>
+<option>Hello 1</option>
+<option>Hello 2</option>
+<option>Hello 3</option>
+<option>Hello 4</option>
+</select>
+<div class="crypto_ui_3-select_4_arrow">
+</div>
+</div>
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Поле выбора для криптовалют<br>
+[Код
+<textarea class="element_textarea">
+<select class="crypto_ui_3-select_5">
+<option id="bitfinex_ABS" color="00AEFF" style="color:#00AEFF;">ABS</option>
+<option id="bitfinex_ABS" color="FF0000" style="color:#FF0000;">ABS</option>
+<option id="bitfinex_ABS" color="C80000" style="color:#C80000;">ABS</option>
+<option id="bitfinex_ABS" color="FF6000" style="color:#FF6000;">ABS</option>
+<option id="bitfinex_ABS" color="C86000" style="color:#C86000;">ABS</option>
+<option id="bitfinex_ABS" color="FF9A00" style="color:#FF9A00;">ABS</option>
+<option id="bitfinex_ABS" color="C89A00" style="color:#C89A00;">ABS</option>
+<option id="bitfinex_ABS" color="FFCD00" style="color:#FFCD00;">ABS</option>
+<option id="bitfinex_ABS" color="C8CD00" style="color:#C8CD00;">ABS</option>
+<option id="bitfinex_ABS" color="FFFF00" style="color:#FFFF00;">ABS</option>
+<option id="bitfinex_ABS" color="FFC800" style="color:#FFC800;">ABS</option>
+<option id="bitfinex_ABS" color="C4FF00" style="color:#C4FF00;">ABS</option>
+<option id="bitfinex_ABS" color="C4C800" style="color:#C4C800;">ABS</option>
+<option id="bitfinex_ABS" color="00FF14" style="color:#00FF14;">ABS</option>
+<option id="bitfinex_ABS" color="00C814" style="color:#00C814;">ABS</option>
+<option id="bitfinex_ABS" color="00A5FF" style="color:#00A5FF;">ABS</option>
+<option id="bitfinex_ABS" color="00A5C8" style="color:#00A5C8;">ABS</option>
+<option id="bitfinex_ABS" color="004EFF" style="color:#004EFF;">ABS</option>
+<option id="bitfinex_ABS" color="004EC8" style="color:#004EC8;">ABS</option>
+<option id="bitfinex_ABS" color="3200FF" style="color:#3200FF;">ABS</option>
+<option id="bitfinex_ABS" color="3200C8" style="color:#3200C8;">ABS</option>
+<option id="bitfinex_ABS" color="B200FF" style="color:#B200FF;">ABS</option>
+<option id="bitfinex_ABS" color="B200C8" style="color:#B200C8;">ABS</option>
+<option id="bitfinex_ABS" color="FF0080" style="color:#FF0080;">ABS</option>
+<option id="bitfinex_ABS" color="C80080" style="color:#C80080;">ABS</option>
+</select>
+</textarea>
+]
+</td>	
+</tr>
+</tbody>
+</table>
+</p>
+
+
+
+
+
+
+
+<p>
+<table class="element_table">
+<tbody>
+<tr>
+<td class="element_table_caption" rowspan="2">Переключатель</td>		
+<td> 
+<script>
+$(document).ready(function() 
+{
+
+$('.page_content').on('click', '.switch_1_right', function(){
+$('.switch_1_left').css("background","#14111d");
+$('.switch_1_right').css("background","#1b8ee3");
+});
+$('.page_content').on('click', '.switch_1_left', function(){
+$('.switch_1_right').css("background","#14111d");
+$('.switch_1_left').css("background","#1b8ee3");
+});
+
+});
+</script>
+<div class="crypto_ui_3-switch_1_border">
+<a class="switch_1_left crypto_ui_3-switch_1_on">Активный</a><a class="switch_1_right crypto_ui_3-switch_1_off">Не активный</a><br>
+</div>
+</td>
+
+
+</tr>
+<tr>
+<td class="element_table_description">
+Переключатель без размера
+[Код
+<textarea class="element_textarea">
+<script>
+$(document).ready(function() 
+{
+
+$('.page_content').on('click', '.switch_1_right', function(){
+$('.switch_1_left').css("background","#14111d");
+$('.switch_1_right').css("background","#1b8ee3");
+});
+$('.page_content').on('click', '.switch_1_left', function(){
+$('.switch_1_right').css("background","#14111d");
+$('.switch_1_left').css("background","#1b8ee3");
+});
+
+});
+</script>
+<div class="crypto_ui_3-switch_1_border">
+<a class="switch_1_left crypto_ui_3-switch_1_on">Активный</a><a class="switch_1_right crypto_ui_3-switch_1_off">Не активный</a><br>
+</div>
+</textarea>
+]
+</td>	
+</tr>
+</tbody>
+</table>
+</p>
+
+
+
+
+<p>
+<table class="element_table">
+<tbody>
+<tr>
+<td class="element_table_caption" rowspan="2">Чекбокс</td>		
+<td> 
+
+<label>
+<input class="crypto_ui_3-real_checkbox_1" type="checkbox" name="checkbox-test">
+<div class="crypto_ui_3-checkbox_1"></div>
+<div class="crypto_ui_3-checkbox_1_label_1">Текст для чекбокса 1</div>
+</label>
+
+</td>
+<td> 
+
+<label>
+<input class="crypto_ui_3-real_checkbox_1" type="checkbox" name="checkbox-test">
+<div class="crypto_ui_3-checkbox_1"></div>
+<div class="crypto_ui_3-checkbox_1_label_2">Текст для чекбокса 1</div>
+</label>
+
+</td>
+
+</tr>
+<tr>
+<td class="element_table_description">
+Чекбокс с выравниванием по центру
+[Код
+<textarea class="element_textarea">
+<label>
+<input class="crypto_ui_3-real_checkbox_1" type="checkbox" name="checkbox-test">
+<div class="crypto_ui_3-checkbox_1"></div>
+<div class="crypto_ui_3-checkbox_1_label_1">Текст для чекбокса 1</div>
+</label>
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Чекбокс с выравниванием по низу
+[Код
+<textarea class="element_textarea">
+<label>
+<input class="crypto_ui_3-real_checkbox_1" type="checkbox" name="checkbox-test">
+<div class="crypto_ui_3-checkbox_1"></div>
+<div class="crypto_ui_3-checkbox_1_label_2">Текст для чекбокса 1</div>
+</label>
+</textarea>
+]
+</td>	
+</tr>
+</tbody>
+</table>
+</p>
+
+
+
+
+<p>
+<table class="element_table">
+<tbody>
+<tr>
+<td class="element_table_caption" rowspan="2">Текст</td>		
+<td> 
+<font class="crypto_ui_3-color_text_1">Текст</font>
+</td>
+<td> 
+<font class="crypto_ui_3-color_text_2">Текст</font>
+</td>
+<td> 
+<font class="crypto_ui_3-color_text_3">Текст</font>
+</td>
+<td> 
+<font class="crypto_ui_3-color_text_4">Текст</font>
+</td>
+</tr>
+<tr>
+<td class="element_table_description">
+Текст
+[Код
+<textarea class="element_textarea">
+<font class="crypto_ui_3-color_text_1">Текст</font>
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Текст
+[Код
+<textarea class="element_textarea">
+<font class="crypto_ui_3-color_text_2">Текст</font>
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Текст
+[Код
+<textarea class="element_textarea">
+<font class="crypto_ui_3-color_text_3">Текст</font>
+</textarea>
+]
+</td>
+<td class="element_table_description">
+Текст
+[Код
+<textarea class="element_textarea">
+<font class="crypto_ui_3-color_text_4">Текст</font>
+</textarea>
+]
+</td>		
+</tr>
+</tbody>
+</table>
+</p>
+
+
+
+<p>
+<table class="element_table">
+<tbody>
+<tr>
+<td class="element_table_caption" rowspan="2">Вкладки</td>		
+<td> 
+
+
+<div class="crypto_ui_3-tabs_1">
+<!--Порядок должен быть всегда таким - сначала input, потом его tab. -->
+<input id="crypto_ui_3_tabs_1_tab_1" type="radio" name="crypto_ui_3-tabs_1" checked="">
+<label for="crypto_ui_3_tabs_1_tab_1" title="Вкладка 1">Вкладка 1</label>
+ 
+<input id="crypto_ui_3_tabs_1_tab_2" type="radio" name="crypto_ui_3-tabs_1">
+<label for="crypto_ui_3_tabs_1_tab_2" title="Вкладка 2">Вкладка 2</label>
+ 
+<input id="crypto_ui_3_tabs_1_tab_3" type="radio" name="crypto_ui_3-tabs_1">
+<label for="crypto_ui_3_tabs_1_tab_3" title="Вкладка 3">Вкладка 3</label>
+ 
+<input id="crypto_ui_3_tabs_1_tab_4" type="radio" name="crypto_ui_3-tabs_1">
+<label for="crypto_ui_3_tabs_1_tab_4" title="Вкладка 4">Вкладка 4</label>
+ 
+<section id="content-crypto_ui_3_tabs_1_tab_1">
+Содержимое вкладки 1
+</section>
+
+<section id="content-crypto_ui_3_tabs_1_tab_2">
+Содержимое вкладки 2
+</section>
+
+<section id="content-crypto_ui_3_tabs_1_tab_3">
+Содержимое вкладки 3
+</section>
+
+<section id="content-crypto_ui_3_tabs_1_tab_4">
+Содержимое вкладки 4
+</section>
+</div>
+
+</td>
+
 <td>
 
-<div class="ui_hamburger_menu_button_1">
-<div class="ui_hamburger_menu_button_1_content" style="margin-top:0px !important;"></div> 
-<div class="ui_hamburger_menu_button_1_content"></div>
-<div class="ui_hamburger_menu_button_1_content"></div> 
+<div class="crypto_ui_3-tabs_2">
+<!--Порядок должен быть всегда таким - сначала input, потом его tab. -->
+<input id="crypto_ui_3_tabs_2_tab_1" type="radio" name="crypto_ui_3-tabs_2" checked="">
+<label for="crypto_ui_3_tabs_2_tab_1" title="">wex</label>
+ 
+<input id="crypto_ui_3_tabs_2_tab_2" type="radio" name="crypto_ui_3-tabs_2">
+<label for="crypto_ui_3_tabs_2_tab_2" title="">bitfinex</label>
+ 
+<input id="crypto_ui_3_tabs_2_tab_3" type="radio" name="crypto_ui_3-tabs_2">
+<label for="crypto_ui_3_tabs_2_tab_3" title="">liqui</label>
+ 
+<input id="crypto_ui_3_tabs_2_tab_4" type="radio" name="crypto_ui_3-tabs_2">
+<label for="crypto_ui_3_tabs_2_tab_4" title="">data</label>
+ 
+<section id="content-crypto_ui_3_tabs_2_tab_1">
+Содержимое вкладки 1
+</section>
+
+<section id="content-crypto_ui_3_tabs_2_tab_2">
+Содержимое вкладки 2
+</section>
+
+<section id="content-crypto_ui_3_tabs_2_tab_3">
+Содержимое вкладки 3
+</section>
+
+<section id="content-crypto_ui_3_tabs_2_tab_4">
+Содержимое вкладки 4
+</section>
 </div>
 
-</td><td>
-<a href="#"><div class="ui_arrow_menu_button_1"><div class="ui_arrow_down_menu_button_1_in"></div></div></a>
-</td><td>
-<a href="#"><div class="ui_arrow_menu_button_1"><div class="ui_arrow_up_menu_button_1_in"></div></div></a>
-</td><td>
-<a href="#"><div class="ui_arrow_menu_button_1"><div class="ui_arrow_left_menu_button_1_in"></div></div></a>
-</td><td>
-<a href="#"><div class="ui_arrow_menu_button_1"><div class="ui_arrow_right_menu_button_1_in"></div></div></a>
-</td><td>
+</td>
 
+
+</tr>
+<tr>
+<td class="element_table_description">
+Вкладки 1
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-tabs_1">
+<!--Порядок должен быть всегда таким - сначала input, потом его tab. -->
+<input id="crypto_ui_3_tabs_1_tab_1" type="radio" name="crypto_ui_3-tabs_1" checked="">
+<label for="crypto_ui_3_tabs_1_tab_1" title="Вкладка 1">Вкладка 1</label>
+ 
+<input id="crypto_ui_3_tabs_1_tab_2" type="radio" name="crypto_ui_3-tabs_1">
+<label for="crypto_ui_3_tabs_1_tab_2" title="Вкладка 2">Вкладка 2</label>
+ 
+<input id="crypto_ui_3_tabs_1_tab_3" type="radio" name="crypto_ui_3-tabs_1">
+<label for="crypto_ui_3_tabs_1_tab_3" title="Вкладка 3">Вкладка 3</label>
+ 
+<input id="crypto_ui_3_tabs_1_tab_4" type="radio" name="crypto_ui_3-tabs_1">
+<label for="crypto_ui_3_tabs_1_tab_4" title="Вкладка 4">Вкладка 4</label>
+ 
+<section id="content-crypto_ui_3_tabs_1_tab_1">
+Содержимое вкладки 1
+</section>
+
+<section id="content-crypto_ui_3_tabs_1_tab_2">
+Содержимое вкладки 2
+</section>
+
+<section id="content-crypto_ui_3_tabs_1_tab_3">
+Содержимое вкладки 3
+</section>
+
+<section id="content-crypto_ui_3_tabs_1_tab_4">
+Содержимое вкладки 4
+</section>
+</div>
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Вкладки 2
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-tabs_2">
+<!--Порядок должен быть всегда таким - сначала input, потом его tab. -->
+<input id="crypto_ui_3_tabs_2_tab_1" type="radio" name="crypto_ui_3-tabs_2" checked="">
+<label for="crypto_ui_3_tabs_2_tab_1" title="">wex</label>
+ 
+<input id="crypto_ui_3_tabs_2_tab_2" type="radio" name="crypto_ui_3-tabs_2">
+<label for="crypto_ui_3_tabs_2_tab_2" title="">bitfinex</label>
+ 
+<input id="crypto_ui_3_tabs_2_tab_3" type="radio" name="crypto_ui_3-tabs_2">
+<label for="crypto_ui_3_tabs_2_tab_3" title="">liqui</label>
+ 
+<input id="crypto_ui_3_tabs_2_tab_4" type="radio" name="crypto_ui_3-tabs_2">
+<label for="crypto_ui_3_tabs_2_tab_4" title="">data</label>
+ 
+<section id="content-crypto_ui_3_tabs_2_tab_1">
+Содержимое вкладки 1
+</section>
+
+<section id="content-crypto_ui_3_tabs_2_tab_2">
+Содержимое вкладки 2
+</section>
+
+<section id="content-crypto_ui_3_tabs_2_tab_3">
+Содержимое вкладки 3
+</section>
+
+<section id="content-crypto_ui_3_tabs_2_tab_4">
+Содержимое вкладки 4
+</section>
+</div>
+</textarea>
+]
+</td>	
+</tbody>
 </table>
-<br>
-<a href="#" class="ui_link_1">Ссылка 1</a>
-<br>
-<a href="#" class="ui_link_2">Ссылка 2</a>
+</p>
 
 
 
 
-<br><br><br>
-<label>
-<input class="ui_real_checkbox" type="checkbox" name="checkbox-test">
-<span class="ui_checkbox_1"></span>
-<span class="ui_checkbox_1_label">Дополнительные аргументы командной строки</span>
-</label>
 
-<div class="ui_select_3">
-<select class="ui_real_select_3">
-<option>Особый выпадающий список</option>
-<option value="1">Pure CSS</option>
-<option value="2">No JS</option>
-<option value="3">Nice!</option>
-</select>
-</div>
+<p>
+<table class="element_table">
+<tbody>
+<tr>
+<td class="element_table_caption" rowspan="2">Слайдер</td>		
+<td> 
+<input type="range" class="crypto_ui_3-input_range_1" min="0" max="100" step="1" value="50">
+</td>
+<td> 
 
-
-
-
-<br><br>
-<label>
-<input class="ui_real_radio" type="radio" name="radio-test">
-<span class="ui_radio_1"></span>
-<span class="ui_radio_1_label_1">Текст радиокнопки</span>
-</label>
-
-<br><br>
-<label>
-<input class="ui_real_radio" type="radio" name="radio-test">
-<span class="ui_radio_1"></span>
-<span class="ui_radio_1_label_1">Текст радиокнопки</span>
-</label>
-
-
-<br><br>
-<input type="range" class="ui_input_range_1" min="0" max="100" step="1" value="50"> 
-
-<br><br>
 <!-- Скрипт слайдера -->
 <script>
-$( function() {$( "#ui_range_horizontal_slider_1" ).slider({range:true,min:0,max:500,values:[75, 300],step:10,animate:true,disabled:false});});
+$( function() {$( "#crypto_ui_3-range_horizontal_slider_1" ).slider({range:true,min:0,max:500,values:[75, 300],step:10,animate:true,disabled:false});});
 </script>
 <!-- Пример события -->
 <script>
 $(document).ready(function() { 
-jQuery("#ui_range_horizontal_slider_1").slider({
+jQuery("#crypto_ui_3-range_horizontal_slider_1").slider({
 /*slide - при каждом перемещении, stop - при остановке*/
 stop: function( event, ui )
 {
 alert (ui.values[ 0 ]);
 }
-
 });
 });
 </script>
 <!-- ui.values[0] ui.values[1] -->
 <!--  http://xiper.net/collect/js-plugins/ui/jquery-ui-slider  -->
-<div id="ui_range_horizontal_slider_1" class="ui_range_horizontal_slider_1"></div>
-
-<br><br>
-Текст перед select 
-<div class="ui_select_1">
-<select class="ui_real_select" style="width:200px;">
-<option>Choose an option</option>
-<option value="1">Pure CSS</option>
-<option value="2">No JS</option>
-<option value="3">Nice!</option>
-</select>
-</div>
-
-
-
-
-
-
-
-
-
-<br><br>
-<div class="ui_tabs_1">
-<!--Порядок должен быть всегда таким - сначала input, потом его tab. -->
-<input id="ui_tab_1_1" type="radio" name="ui_tabs_1" checked>
-<label for="ui_tab_1_1" title="Вкладка 1">Вкладка 1</label>
- 
-<input id="ui_tab_1_2" type="radio" name="ui_tabs_1">
-<label for="ui_tab_1_2" title="Вкладка 2">Вкладка 2</label>
- 
-<input id="ui_tab_1_3" type="radio" name="ui_tabs_1">
-<label for="ui_tab_1_3" title="Вкладка 3">Вкладка 3</label>
- 
-<input id="ui_tab_1_4" type="radio" name="ui_tabs_1">
-<label for="ui_tab_1_4" title="Вкладка 4">Вкладка 4</label>
- 
-<section id="content-ui_tab_1_1">
-Содержимое вкладки 1
-</section>
-
-<section id="content-ui_tab_1_2">
-Содержимое вкладки 2
-</section>
-
-<section id="content-ui_tab_1_3">
-Содержимое вкладки 3
-</section>
-
-<section id="content-ui_tab_1_4">
-Содержимое вкладки 4
-</section>
-</div>
-
-
-
-<br><br>
-<div class="ui_panel_1">
-Панель с текстом
-</div>
-
-<br><br>
-<div class="ui_panel_2">
-Панель 2 с текстом
-</div>
-
-<br><br>
-<div class="ui_panel_3">
-<div class="ui_panel_3_header">
-Заголовок
-</div>
-<div class="ui_panel_3_body">
-Панель 3 с текстом
-</div>
-</div>
-
-<br>
-<table cellpadding="4">
-<tr>
-<td>
-
-
-<table class="ui_table_1">
-<thead>
-<tr>
-<th>head1</th>
-<th>head2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>cell1_1</td><td>cell2_1</td></tr>
-<tr>
-<td>cell1_2</td><td>cell2_2</td></tr>
-</tbody>
-</table>
-
-</td><td>
-
-<table class="ui_table_2">
-<thead>
-<tr>
-<th>head1</th>
-<th>head2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>cell1_1</td><td>cell2_1</td></tr>
-<tr>
-<td>cell1_2</td><td>cell2_2</td></tr>
-</tbody>
-</table>
-
-</td><td>
-
-<table class="ui_table_3">
-<thead>
-<tr>
-<th>head1</th>
-<th>head2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>cell1_1</td><td>cell2_1</td></tr>
-<tr>
-<td>cell1_2</td><td>cell2_2</td></tr>
-</tbody>
-</table>
-
-
-</td><td>
-
-<table class="ui_table_4">
-<thead>
-<tr>
-<th>head1</th>
-<th>head2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>cell1_1</td><td>cell2_1</td></tr>
-<tr>
-<td>cell1_2</td><td>cell2_2</td></tr>
-</tbody>
-</table>
-
-
-</td><td>
-
-<table class="ui_table_5">
-<thead>
-<tr>
-<th>head1</th>
-<th>head2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>cell1_1</td><td>cell2_1</td></tr>
-<tr>
-<td>cell1_2</td><td>cell2_2</td></tr>
-</tbody>
-</table>
-
-</td><td>
-
-
+<div id="crypto_ui_3-range_horizontal_slider_1" class="crypto_ui_3-range_horizontal_slider_1"></div>
 
 </td>
-</table>
-
-
-<br>
-<table cellpadding="4">
+</tr>
 <tr>
-<td>
+<td class="element_table_description">
+Одиночный слайдер
+[Код
+<textarea class="element_textarea">
+<input type="range" class="crypto_ui_3-input_range_1" min="0" max="100" step="1" value="50">
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Двойной слайдер
+[Код
+<textarea class="element_textarea">
+<script>
+$( function() {$( "#crypto_ui_3-range_horizontal_slider_1" ).slider({range:true,min:0,max:500,values:[75, 300],step:10,animate:true,disabled:false});});
+</script>
+<!-- Пример события -->
+<script>
+$(document).ready(function() { 
+jQuery("#crypto_ui_3-range_horizontal_slider_1").slider({
+/*slide - при каждом перемещении, stop - при остановке*/
+stop: function( event, ui )
+{
+alert (ui.values[ 0 ]);
+}
+});
+});
+</script>
+<!-- ui.values[0] ui.values[1] -->
+<div id="crypto_ui_3-range_horizontal_slider_1" class="crypto_ui_3-range_horizontal_slider_1"></div>
+</textarea>
+]
+</td>	
+</tr>
+</tbody>
+</table>
+</p>
 
-<div class="ui_scrollable_div_1" style="width:200px;height:200px;">
+
+
+<p>
+<table class="element_table">
+<tbody>
+<tr>
+<td class="element_table_caption" rowspan="2">Панель</td>		
+<td> 
+<div class="crypto_ui_3-panel_1" style="width:100px;height:100px;">Текст внутри панели</div>
+</td>
+<td> 
+<div class="crypto_ui_3-panel_2" style="width:100px;height:100px;">Текст внутри панели</div>
+</td>
+<td> 
+<div class="crypto_ui_3-panel_3" style="width:100px;height:100px;">Текст внутри панели</div>
+</td>
+<td> 
+<div class="crypto_ui_3-panel_4" style="width:100px;height:100px;">Текст внутри панели</div>
+</td>
+<td> 
+<div class="crypto_ui_3-panel_5" style="width:100px;height:100px;">Текст внутри панели</div>
+</td>
+<td> 
+<div class="crypto_ui_3-panel_6" style="width:100px;height:100px;">Текст внутри панели</div>
+</td>
+</tr>
+<tr>
+<td class="element_table_description">
+Панель 1
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-panel_1">Текст внутри панели</div>
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Панель 2
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-panel_2">Текст внутри панели</div>
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Панель 3
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-panel_3">Текст внутри панели</div>
+</textarea>
+]
+</td>
+<td class="element_table_description">
+Панель 4
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-panel_4">Текст внутри панели</div>
+</textarea>
+]
+</td>
+<td class="element_table_description">
+Панель 5
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-panel_5">Текст внутри панели</div>
+</textarea>
+]
+</td>
+<td class="element_table_description">
+Панель 6
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-panel_6">Текст внутри панели</div>
+</textarea>
+]
+</td>
+</tr>
+</tbody>
+</table>
+</p>
+
+
+
+<p>
+<table class="element_table">
+<tbody>
+<tr>
+<td class="element_table_caption" rowspan="2">Таблица</td>		
+<td> 
+<table class="crypto_ui_3-table_1">
+<thead>
+<tr>
+<th>Пример</th>
+<th>таблицы</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cell1_1</td><td>cell2_1</td></tr>
+<tr>
+<td>cell1_2</td><td>cell2_2</td></tr>
+</tbody>
+</table>
+</td>
+<td> 
+<table class="crypto_ui_3-table_2">
+<thead>
+<tr>
+<th>Пример</th>
+<th>таблицы</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cell1_1</td><td>cell2_1</td></tr>
+<tr>
+<td>cell1_2</td><td>cell2_2</td></tr>
+</tbody>
+</table>
+</td>
+<td> 
+<table class="crypto_ui_3-table_3">
+<thead>
+<tr>
+<th>Пример</th>
+<th>таблицы</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cell1_1</td><td>cell2_1</td></tr>
+<tr>
+<td>cell1_2</td><td>cell2_2</td></tr>
+</tbody>
+</table>
+</td>
+<td> 
+<table class="crypto_ui_3-table_4">
+<thead>
+<tr>
+<th>Пример</th>
+<th>таблицы</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cell1_1</td><td>cell2_1</td></tr>
+<tr>
+<td>cell1_2</td><td>cell2_2</td></tr>
+</tbody>
+</table>
+</td>
+<td> 
+<table class="crypto_ui_3-table_5">
+<thead>
+<tr>
+<th>Пример</th>
+<th>таблицы</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cell1_1</td><td>cell2_1</td></tr>
+<tr>
+<td>cell1_2</td><td>cell2_2</td></tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td class="element_table_description">
+Таблица 1
+[Код
+<textarea class="element_textarea">
+<table class="crypto_ui_3-table_1">
+<thead>
+<tr>
+<th>Пример</th>
+<th>таблицы</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cell1_1</td><td>cell2_1</td></tr>
+<tr>
+<td>cell1_2</td><td>cell2_2</td></tr>
+</tbody>
+</table>
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Таблица 2
+[Код
+<textarea class="element_textarea">
+<table class="crypto_ui_3-table_2">
+<thead>
+<tr>
+<th>Пример</th>
+<th>таблицы</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cell1_1</td><td>cell2_1</td></tr>
+<tr>
+<td>cell1_2</td><td>cell2_2</td></tr>
+</tbody>
+</table>
+</textarea>
+]
+</td>
+<td class="element_table_description">
+Таблица 3
+[Код
+<textarea class="element_textarea">
+<table class="crypto_ui_3-table_3">
+<thead>
+<tr>
+<th>Пример</th>
+<th>таблицы</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cell1_1</td><td>cell2_1</td></tr>
+<tr>
+<td>cell1_2</td><td>cell2_2</td></tr>
+</tbody>
+</table>
+</textarea>
+]
+</td>
+<td class="element_table_description">
+Таблица 4
+[Код
+<textarea class="element_textarea">
+<table class="crypto_ui_3-table_4">
+<thead>
+<tr>
+<th>Пример</th>
+<th>таблицы</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cell1_1</td><td>cell2_1</td></tr>
+<tr>
+<td>cell1_2</td><td>cell2_2</td></tr>
+</tbody>
+</table>
+</textarea>
+]
+</td>
+<td class="element_table_description">
+Таблица 5
+[Код
+<textarea class="element_textarea">
+<table class="crypto_ui_3-table_5">
+<thead>
+<tr>
+<th>Пример</th>
+<th>таблицы</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cell1_1</td><td>cell2_1</td></tr>
+<tr>
+<td>cell1_2</td><td>cell2_2</td></tr>
+</tbody>
+</table>
+</textarea>
+]
+</td>
+</tr>
+</tbody>
+</table>
+</p>
+
+
+
+<p>
+<table class="element_table">
+<tbody>
+<tr>
+<td class="element_table_caption" rowspan="2">Блок (div) с прокруткой</td>		
+<td> 
+<div class="crypto_ui_3-scrollable_div_1" style="width:200px;height:100px;">
 А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
 А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
 </div>
-
 </td>
-<td valign="top">
-
-<select class="ui_size_select_1" size="6" style="width:200px;">
-<option>BTC (Bitcoin)</option>
-<option value="1">ETH (Ethirium)</option>
-<option value="2">DOGE (Doge coin)</option>
-<option value="3">Nice!</option>
-<option value="3">Nice1!</option>
-<option value="3">Nice2!</option>
-<option value="3">Nice3!</option>
-<option value="3">XEM (NewEconomyMovement)</option>
-</select>
-
+<td> 
+<div class="crypto_ui_3-scrollable_div_2" style="width:200px;height:100px;">
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+</div>
 </td>
-<td valign="top">
-
-<textarea class="ui_textarea_1">А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации.</textarea>
-
+<td> 
+<div class="crypto_ui_3-scrollable_div_3" style="width:200px;height:100px;">
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+</div>
 </td>
-
-<td valign="top">
-
-
+<td> 
+<div class="crypto_ui_3-scrollable_div_4" style="width:200px;height:100px;">
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+</div>
 </td>
+<td> 
+<div class="crypto_ui_3-scrollable_div_5" style="width:200px;height:100px;">
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+</div>
+</td>
+<td> 
+<div class="crypto_ui_3-scrollable_div_6" style="width:200px;height:100px;">
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+</div>
+</td>
+</tr>
+<tr>
+<td class="element_table_description">
+Блок 1
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-scrollable_div_1">
+Текст
+</div>
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Блок 2
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-scrollable_div_2">
+Текст
+</div>
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Блок 3
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-scrollable_div_3">
+Текст
+</div>
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Блок 4
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-scrollable_div_4">
+Текст
+</div>
+</textarea>
+]
+</td>
+<td class="element_table_description">
+Блок 5
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-scrollable_div_5">
+Текст
+</div>
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Блок 6
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-scrollable_div_6">
+Текст
+</div>
+</textarea>
+]
+</td>		
+</tr>
+</tbody>
 </table>
+</p>
 
 
 
 
-<br><br>
+<p>
+<table class="element_table">
+<tbody>
+<tr>
+<td class="element_table_caption" rowspan="2">Текстовое поле (textarea)</td>		
+<td>
+<textarea name="text"class="crypto_ui_3-textarea_1" style="width:200px;height:100px;">
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+</textarea>
+ </td>
+<td> 
+<textarea name="text"class="crypto_ui_3-textarea_2" style="width:200px;height:100px;">
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+</textarea>
+</td>
+<td> 
+<textarea name="text"class="crypto_ui_3-textarea_3" style="width:200px;height:100px;">
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+</textarea>
+</td>
+<td> 
+<textarea name="text"class="crypto_ui_3-textarea_4" style="width:200px;height:100px;">
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+</textarea>
+</td>
+<td> 
+<textarea name="text"class="crypto_ui_3-textarea_5" style="width:200px;height:100px;">
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+</textarea>
+</td>
+<td> 
+<textarea name="text"class="crypto_ui_3-textarea_6" style="width:200px;height:100px;">
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. А тут много-много разного текста и прочей информации. 
+</textarea>
+</td>
+</tr>
+<tr>
+<td class="element_table_description">
+Поле 1
+[Код
+<textarea class="element_textarea">
+<textarea name="text" class="crypto_ui_3-textarea_1">
+Текст
+&lt;/textarea>
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Поле 2
+[Код
+<textarea class="element_textarea">
+<textarea name="text" class="crypto_ui_3-textarea_2">
+Текст
+&lt;/textarea>
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Поле 3
+[Код
+<textarea class="element_textarea">
+<textarea name="text" class="crypto_ui_3-textarea_3">
+Текст
+&lt;/textarea>
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Поле 4
+[Код
+<textarea class="element_textarea">
+<textarea name="text" class="crypto_ui_3-textarea_4">
+Текст
+&lt;/textarea>
+</textarea>
+]
+</td>	
+<td class="element_table_description">
+Поле 5
+[Код
+<textarea class="element_textarea">
+<textarea name="text" class="crypto_ui_3-textarea_5">
+Текст
+&lt;/textarea>
+</textarea>
+]
+</td>
+<td class="element_table_description">
+Поле 6
+[Код
+<textarea class="element_textarea">
+<textarea name="text" class="crypto_ui_3-textarea_6">
+Текст
+&lt;/textarea>
+</textarea>
+]
+</td>
+</tr>
+</tbody>
+</table>
+</p>
+
+
+
+
+
+
+
+
+<p>
+<table class="element_table">
+<tbody>
+<tr>
+<td class="element_table_caption" rowspan="2">Дополнительные элементы</td>		
+<td> 
+<div class="crypto_ui_3-arrow_menu_button_1"><div class="crypto_ui_3-p_menu_button_1_in"></div></div>
+</td>
+<td> 
+<a class="open_modal_window crypto_ui_3-button_1">Открыть окно</a>
+</td>
+<td> 
+<div class="crypto_ui_3-loading_1">
+<div class="rect1"></div>&nbsp;<div class="rect2"></div>&nbsp;<div class="rect3"></div>&nbsp;<div class="rect4"></div>&nbsp;<div class="rect5"></div>
+</div>
+</td>
+<td>
+<a class="show_jgrowl_message crypto_ui_3-link_1" data="">Всплывающее сообщение</a><br>
+<a class="show_jgrowl_message crypto_ui_3-link_1" data="ok">Всплывающее сообщение c успехом</a><br>
+<a class="show_jgrowl_message crypto_ui_3-link_1" data="error">Всплывающее сообщение c ошибкой</a>
+</td> 
+
+
+</tr>
+<tr>
+<td class="element_table_description">
+Кнопка с стрелкой<br>вверх
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-arrow_menu_button_1"><div class="crypto_ui_3-p_menu_button_1_in"></div></div>
+</textarea>
+]
+</td>
+<td class="element_table_description">
+Модальное окно
+[Код
+<textarea class="element_textarea">
+<!-- Функция вызова модального окна с передачей в него параметров -->
+<script>
+$(function(){
+$('.open_modal_window').on('click', function(){
+$('.modal_window_container').arcticmodal();
+<!-- Передаем id нажатой ссылки вызываемому скрипту -->
+//$('.modal_window_content').load('www.google.com&id='+this.id);
+return false;
+});
+})
+</script>
+
+
+<!-- Модальное окно. В это окно будет загружен код.  -->
+<div style="display:none;">
+<div class="modal_window_container crypto_ui_3-box_modal">
+<div class="crypto_ui_3-box_modal_close arcticmodal-close">&times;</div>
+<div class="modal_window_content crypto_ui_3-box_modal_window_content">
+Текст модального окна Текст модального окна Текст модального окна<br>
+Текст модального окна Текст модального окна Текст модального окна<br>
+Текст модального окна Текст модального окна Текст модального окна<br>
+Текст модального окна Текст модального окна Текст модального окна<br>
+</div>
+</div>
+</div>
+</textarea>
+]
+</td>
+<td class="element_table_description">
+Анимация загрузки
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-loading_1">
+<div class="rect1"></div>&nbsp;<div class="rect2"></div>&nbsp;<div class="rect3"></div>&nbsp;<div class="rect4"></div>&nbsp;<div class="rect5"></div>
+</div>
+</textarea>
+]
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+</p>
+
+
+
+
+
+
+
+<p>
+<table class="element_table">
+<tbody>
+<tr>
+<td class="element_table_caption" rowspan="2">Отступы</td>		
+<td>
+<input type="text" name="field_name" placeholder="текст" class="crypto_ui_3-input_type_text_1">
+<div class="crypto_ui_3-element_vertical_indent_1"> 
+<input type="text" name="field_name" placeholder="текст" class="crypto_ui_3-element_vertical_indent crypto_ui_3-input_type_text_1">
+</div>
+<div class="crypto_ui_3-element_vertical_indent_1"> 
+<input type="text" name="field_name" placeholder="текст" class="crypto_ui_3-element_vertical_indent crypto_ui_3-input_type_text_1">
+</div>
+</td>
+</tr>
+<tr>
+<td class="element_table_description">
+Вертикальный отступ
+[Код
+<textarea class="element_textarea">
+<div class="crypto_ui_3-element_vertical_indent_1">
+
+</div>
+</textarea>
+]
+</td>
+
+</tr>
+</tbody>
+</table>
+</p>
+
+
+
+<p>
+<table class="element_table">
+<tbody>
+<tr>
+<td class="element_table_caption" rowspan="2">Ввод чисел</td>		
+<td>
+
+
+<script>
+$(document).ready(function() 
+{
+
+
+$(document).on('click', '.crypto_ui_3-quantity_button_minus', function(){
+var quantity = $('.crypto_ui_3-input_type_quantity_1').val();
+if (quantity>0) quantity--;
+$('.crypto_ui_3-input_type_quantity_1').val(quantity);
+//console.log(quantity);
+});
+$(document).on('click', '.crypto_ui_3-quantity_button_plus', function(){
+var quantity = $('.crypto_ui_3-input_type_quantity_1').val();
+quantity++;
+$('.crypto_ui_3-input_type_quantity_1').val(quantity);
+});
+
+
+
+
+
+
+});
+</script>
+
+
+<div class="crypto_ui_3-quantity_outer">
+<a class="crypto_ui_3-quantity_button_minus"></a><input type="text" onkeyup ="this.value=parseInt(this.value) | 0" name="field_name" class="crypto_ui_3-input_type_quantity_1" value="1"><a class="crypto_ui_3-quantity_button_plus"></a>
+</div>
+
+
+
+
+
+
+
+</td>
+</tr>
+<tr>
+<td class="element_table_description">
+
+[Код
+<textarea class="element_textarea">
+
+</textarea>
+]
+</td>
+
+</tr>
+</tbody>
+</table>
+</p>
+
+
+
+
 
 
 
 </div>
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>
+
+
+
 

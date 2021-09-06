@@ -1,0 +1,128 @@
+<div class="crypto_ui_3-slider_1_bg crypto_ui_3-slider_1">
+<input type="checkbox" class="crypto_ui_3-slider_1_checkbox">
+<div class="crypto_ui_3-slider_1_knobs" style=":after{content: 'NO';}">
+<span>YES</span>
+</div>
+
+<div class="crypto_ui_3-slider_1_layer"></div>
+</div>
+
+
+
+
+
+
+//Слайдер 1
+.crypto_ui_3-slider_1_knobs, .crypto_ui_3-slider_1_layer
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.crypto_ui_3-slider_1_bg
+{
+    position: relative;
+    top: 50%;
+    width: 74px;
+    height: 36px;
+    margin: -20px auto 0 auto;
+    overflow: hidden;
+}
+
+
+
+
+
+.crypto_ui_3-slider_1_checkbox
+{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.crypto_ui_3-slider_1_knobs
+{
+    z-index: 2;
+}
+
+.crypto_ui_3-slider_1_layer
+{
+    width: 100%;
+    background-color: #ebf7fc;
+    transition: 0.3s ease all;
+    z-index: 1;
+}
+
+
+.crypto_ui_3-slider_1 .crypto_ui_3-slider_1_knobs:before, .crypto_ui_3-slider_1 .crypto_ui_3-slider_1_knobs:after, .crypto_ui_3-slider_1 .crypto_ui_3-slider_1_knobs span
+{
+    position: absolute;
+    top: 4px;
+    width: 20px;
+    height: 10px;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding: 9px 4px;
+    border-radius: 2px;
+    transition: 0.3s ease all;
+}
+
+.crypto_ui_3-slider_1 .crypto_ui_3-slider_1_knobs:before
+{
+    content: '';
+    left: 4px;
+    background-color: #03A9F4;
+}
+
+
+.crypto_ui_3-slider_1_knob_2
+{
+right: 40px; 
+}
+.crypto_ui_3-slider_1 .crypto_ui_3-slider_1_knobs:after
+{
+    //content: ''; //    content: 'NO';
+    right: 4px;
+    color: #4e4e4e;
+}
+
+.crypto_ui_3-slider_1 .crypto_ui_3-slider_1_knobs span
+{
+    display: inline-block;
+    left: 4px;
+    color: #fff;
+    z-index: 1;
+}
+
+.crypto_ui_3-slider_1 .crypto_ui_3-slider_1_checkbox:checked + .crypto_ui_3-slider_1_knobs span
+{
+    color: #4e4e4e;
+}
+
+.crypto_ui_3-slider_1 .crypto_ui_3-slider_1_checkbox:checked + .crypto_ui_3-slider_1_knobs:before
+{
+    left: 42px;
+    background-color: #F44336;
+}
+
+.crypto_ui_3-slider_1 .crypto_ui_3-slider_1_checkbox:checked + .crypto_ui_3-slider_1_knobs:after
+{
+    color: #fff;
+}
+
+.crypto_ui_3-slider_1 .crypto_ui_3-slider_1_checkbox:checked ~ .crypto_ui_3-slider_1_layer
+{
+    background-color: #fcebeb;
+}
+
+
