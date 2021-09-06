@@ -1,0 +1,1529 @@
+/*
+Для использования rem необходимо задать размер шрифта по умолчанию в html и body.
+Большинство размеров задаем в rem. В px задаем только границы т.к. они не должны изменяться и везде одинаковые.
+*/
+html,body 
+{
+font-family: Arial;
+font-size: 16px;
+
+}
+
+@media screen and (max-width: 1366px) {
+html 
+{
+font-size:14px;
+}
+}  
+
+@media screen and (max-width: 800px) {
+html 
+{
+font-size:12px;
+}
+}  
+
+.ui_bold_text_1
+{
+font-family: Arial;
+font-size: .75rem; /* 12px; */
+font-weight: bold; 
+color: #CDCFD2;
+}
+
+
+.ui_color_text_1
+{
+font-family: Arial;
+font-size: .75rem; /* 12px; */
+color: #F1AE0E;
+}
+
+/* Шрифты */
+/* @font-face {font-family: bicubic_regular; src: url(../ui/bicubic_regular.ttf); /* Путь к файлу со шрифтом */
+
+/* Бэкграунд №1*/
+.ui_background_1
+{
+background: #13171E;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+}
+
+
+/* Внешняя часть окна №1*/
+.ui_window_1_out
+{
+border: 1px solid #3D414A; 
+outline: 1px solid #000000; 
+}
+/* Внутренняя  часть окна №1*/
+.ui_window_1_in
+{
+background: #13171E;
+text-decoration: none;
+vertical-align: middle;   
+width:100%; 
+height:100%;
+}
+/* Часть содержания окна №1*/
+.ui_window_1_content
+{
+padding-left:1.25rem;
+padding-right: 1.25rem;
+padding-bottom: 1.25rem;
+padding-top: 1.25rem;
+color:#CDCFD2;
+font-family: Arial;
+font-size: .875rem;
+}
+/* Заголовок окна №1 */
+.ui_window_1_header
+{
+font-family: Arial;
+font-size: 1.25rem;
+color: #CDCFD2;
+padding-left: 1.25rem;
+padding-top: 1.25rem;
+height: 1.625rem;
+vertical-align: bottom;
+}
+
+
+/* Текстовое поле */
+.ui_input_type_text_1 {
+border: 0.0625rem solid #383838; /* 1px */
+background: #09090A;
+color: #B3B3B3;
+font-family: Arial;
+font-size: .875rem;
+outline:none;
+height: 1.75rem; /* 28px; */
+padding-left: 0.25rem; /* 4px; */
+display:inline-block; /* Не переносить этот див на новую строку */
+vertical-align: middle;
+}
+.ui_input_type_text_1:hover {
+border: 0.0625rem solid #44484E;
+background: #0E1015;
+color: #ffffff;
+}
+.ui_input_type_text_1:focus {
+border: 0.0625rem solid #1E5F99;
+background: #0B0D11;
+color: #ffffff;
+}
+.ui_input_type_text_1:focus::-webkit-input-placeholder {color: transparent}
+.ui_input_type_text_1:focus::-moz-placeholder          {color: transparent}
+.ui_input_type_text_1:focus:-moz-placeholder           {color: transparent}
+.ui_input_type_text_1:focus:-ms-input-placeholder      {color: transparent}
+
+
+
+/* Поле выбора 1 */
+.ui_real_select::-ms-expand {
+display: none;
+display: inline-block;
+}
+
+.ui_select_1 {
+height: 2rem; /* 32px; */
+position: relative;
+display:inline-block; /* Не переносить этот див на новую строку */
+vertical-align: middle;
+}
+
+.ui_select_2 {
+height: 1.75rem; /* 28px; */
+position: relative;
+display:inline-block; /* Не переносить этот див на новую строку */
+vertical-align: middle;
+}
+
+/* Символ стрелок справа */
+.ui_select_1::after {
+background: #0C7ECB;  
+color:#20555F;
+content:'';
+/* https://bennettfeely.com/clippy/ */
+clip-path: polygon(0 34%, 50% 80%, 100% 34%, 80% 34%, 50% 60%, 20% 34%);
+transform: scale(0.5,0.5) ;
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+padding: 0 1rem; 
+}
+/* Transition */
+.ui_select_1:hover::after {color: #2D7786;}
+
+.ui_select_2::after {
+background: #0C7ECB;  
+color:#20555F;
+content:'';
+/* https://bennettfeely.com/clippy/ */
+clip-path: polygon(0 34%, 50% 80%, 100% 34%, 80% 34%, 50% 60%, 20% 34%);
+transform: scale(0.5,0.5) ;
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+padding: 0 1rem; 
+}
+/* Transition */
+.ui_select_2:hover::after {color: #2D7786;}
+
+
+.ui_select_3 {
+height: 1.75rem; /* 28px; */
+position: relative;
+display:inline-block; /* Не переносить этот див на новую строку */
+vertical-align: middle;
+}
+
+.ui_real_select_3 {
+
+
+font-family: Arial;
+-webkit-appearance: none;
+-moz-appearance: none;
+-ms-appearance: none;
+appearance: none;
+outline: 0;
+box-shadow: none;
+
+border: 0px;
+background: #13171E;
+background-image: none;
+  
+width: 100%;
+height: 100%;
+margin: 0;
+padding: .5 0 0 .5rem;
+color: #ffffff;
+cursor: pointer;
+}
+
+.ui_select_3:hover::after {color: #2D7786;}
+
+
+
+/* Select - "список" */
+.ui_size_select_1 {
+position: relative;
+display:inline-block; /* Не переносить этот див на новую строку */
+vertical-align: middle;
+outline:none;
+padding: 2px;
+background: #222A37;
+border: 1px solid #383838;
+color: #00AEFF;
+font-family: Arial;
+font-size: .875rem;
+}
+.ui_size_select_1::-webkit-scrollbar {
+width: 0.4375rem; /* 7px; */
+height: 0.4375rem; /* 7px; */
+}
+.ui_size_select_1::-webkit-scrollbar-button {
+width: 2px;
+height: 2px;
+}
+.ui_size_select_1::-webkit-scrollbar-thumb {
+  background: #484b4f;
+  border: 0px none #ffffff;
+  border-radius: 3px;
+}
+.ui_size_select_1::-webkit-scrollbar-thumb:hover {
+  background: #616469;
+}
+.ui_size_select_1::-webkit-scrollbar-thumb:active {
+  background: #616469;
+}
+.ui_size_select_1::-webkit-scrollbar-track {
+  background: #181E27;
+  border: 0px none #ffffff;
+  border-radius: 0px;
+}
+
+
+
+/* Ссылка 1 */
+.ui_link_1{
+color: #0E86CA;
+font-family: Arial;
+font-size: .875rem; /* 14px */
+transition-property:color;
+transition-duration: 100ms;
+transition-timing-function: ease;
+transition-delay: 0s; 
+}
+.ui_link_1:hover {
+color: #00AEFF; 
+}
+.ui_link_1:active {
+color: #095386; 
+}
+
+
+/* Ссылка 1 */
+.ui_link_2{
+color: #00AEFF;
+font-family: Arial;
+font-size: .875rem; /* 14px */
+transition-property:color;
+transition-duration: 100ms;
+transition-timing-function: ease;
+transition-delay: 0s; 
+}
+.ui_link_2:hover {
+color: #71D2FF; 
+}
+.ui_link_2:active {
+color: #00AEFF; 
+}
+
+
+
+/* Кнопка 1 */
+.ui_link_button_1{
+border: 0.0625rem solid #00AEFF; /* 1px */
+background: #0E86CA;
+color: #ffffff;
+font-family: Arial;
+font-size: .875rem; /* 14px */
+padding: 0.4375rem 1.25rem;  /* 10px */
+text-align: center;
+text-decoration: none;
+transition-property: background;
+transition-duration: 100ms;
+transition-timing-function: ease;
+transition-delay: 0s; 
+vertical-align: middle;
+}
+.ui_link_button_1:hover {
+border: 0.0625rem solid #00AEFF; /* 1px */
+background: #00AEFF; 
+}
+.ui_link_button_1:active {
+border: 0.0625rem solid #095386; /* 1px */
+background: #095386; 
+}
+
+
+
+
+
+
+
+
+/* Кнопка 2 - копия кнопки 1 уменьшенная по высоте */
+.ui_link_button_2{
+border: 0.0625rem solid #00AEFF;
+background: #0E86CA;
+color: #ffffff;
+font-family: Arial;
+font-size: .875rem; /* 14px */
+padding:  0.25rem 0.625rem; /* 4px 10px; */
+text-align: center;
+text-decoration: none;
+transition-property: background;
+transition-duration: 100ms;
+transition-timing-function: ease;
+transition-delay: 0s; 
+vertical-align: middle;
+}
+.ui_link_button_2:hover {
+border: 0.0625rem solid #00AEFF;
+background: #00AEFF; 
+}
+.ui_link_button_2:active {
+border: 0.0625rem solid #095386;
+background: #095386; 
+}
+
+/* Кнопка 3 */
+.ui_link_button_3{
+border: 0.0625rem solid #383838;
+background: #171B23;
+color: #00AEFF;
+font-family: Arial;
+font-size: .875rem; /* 14px */
+padding: 0.4375rem 1.25rem;  /* 10px */
+text-align: center;
+text-decoration: none;
+transition-property: color,background,border;
+transition-duration: 100ms;
+transition-timing-function: ease;
+transition-delay: 0s; 
+vertical-align: middle;
+}
+.ui_link_button_3:hover {
+color: #ffffff;
+border: 0.0625rem solid #3A4353;
+}
+.ui_link_button_3:active {
+color: #B3B3B3;
+border: 0.0625rem solid #2F3239;
+background: #13161C; 
+}
+
+/* Кнопка 4 */
+.ui_link_button_4{
+border: 0.0625rem solid #383838;
+background: #171B23;
+color: #00AEFF;
+font-family: Arial;
+font-size: .875rem; /* 14px */
+padding:  0.25rem 0.625rem; /* 4px 10px; */
+text-align: center;
+text-decoration: none;
+transition-property: background;
+transition-duration: 100ms;
+transition-timing-function: ease;
+transition-delay: 0s; 
+vertical-align: middle;
+}
+.ui_link_button_4:hover {
+color: #ffffff;
+border: 0.0625rem solid #3A4353;
+}
+.ui_link_button_4:active {
+color: #B3B3B3;
+border: 0.0625rem solid #2F3239;
+background: #13161C; 
+}
+
+
+
+/* Кнопка-гамбургер 1 */
+.ui_hamburger_menu_button_1{
+border: 0.0625rem solid #00AEFF; /* 1px */
+background: #171B23;
+cursor:pointer;
+width:1.8rem;
+padding: 0.4rem;
+text-decoration: none;
+transition-property: background;
+transition-duration: 100ms;
+transition-timing-function: ease;
+transition-delay: 0s; 
+vertical-align: middle;
+}
+.ui_hamburger_menu_button_1:hover {
+border: 0.0625rem solid #00AEFF; /* 1px */
+background: #0E1015;
+}
+.ui_hamburger_menu_button_1_content
+{
+margin-top:4px;
+z-index: 2;
+width: 100%;
+height: 4px;
+cursor: pointer;
+background: #0E86CA;
+}
+
+
+/* Кнопка со стрелкой 1 - общая часть */
+.ui_arrow_menu_button_1{
+border: 0.0625rem solid #00AEFF; /* 1px */
+background: #171B23;
+cursor:pointer;
+width:1.8rem;
+padding: 0.4rem;
+text-decoration: none;
+transition-property: background;
+transition-duration: 100ms;
+transition-timing-function: ease;
+transition-delay: 0s; 
+vertical-align: middle;
+}
+.ui_arrow_menu_button_1:hover {
+border: 0.0625rem solid #00AEFF; /* 1px */
+background: #0E1015;
+}
+
+/* Кнопка со стрелкой - вниз */
+.ui_arrow_down_menu_button_1_in {
+background: #0C7ECB;
+width:1.9rem;
+height:1.9rem;
+content:'';
+clip-path: polygon(0 34%, 50% 80%, 100% 34%, 80% 34%, 50% 60%, 20% 34%);
+/*transform: scale(0.5,0.5) rotate(-90deg);*/
+}
+
+/* Кнопка со стрелкой - вверх */
+.ui_arrow_up_menu_button_1_in {
+background: #0C7ECB;
+width:1.9rem;
+height:1.9rem;
+content:'';
+clip-path: polygon(0 34%, 50% 80%, 100% 34%, 80% 34%, 50% 60%, 20% 34%);
+transform: rotate(180deg);
+}
+
+/* Кнопка со стрелкой - влево */
+.ui_arrow_left_menu_button_1_in {
+background: #0C7ECB;
+width:1.9rem;
+height:1.9rem;
+content:'';
+clip-path: polygon(0 34%, 50% 80%, 100% 34%, 80% 34%, 50% 60%, 20% 34%);
+transform: rotate(90deg);
+}
+
+
+/* Кнопка со стрелкой - вправо */
+.ui_arrow_right_menu_button_1_in {
+background: #0C7ECB;
+width:1.8rem;
+height:1.9rem;
+content:'';
+clip-path: polygon(0 34%, 50% 80%, 100% 34%, 80% 34%, 50% 60%, 20% 34%);
+transform:  rotate(-90deg);
+}
+
+
+
+/* Чекбокс 1 */
+/* Скрываем реальный чекбокс */
+.ui_real_checkbox {display: none;}
+/* Если реальный чекбокс у нас отмечен, то тогда добавляем данный признак и к нашему кастомному чекбоксу  */
+.ui_real_checkbox:checked + .ui_checkbox_1::before {
+content: '';
+background: #0C7ECB;
+display: block;			 /* Делаем его блочным элементом */
+position: absolute;      /* Позиционируем его абсолютным образом */
+/* Задаем расстояние от верхней, правой, нижней и левой границы */
+top: 0px;
+right: 0px;
+bottom: 0px;
+left: 0px; 
+/* https://bennettfeely.com/clippy/ */
+ -webkit-clip-path: polygon(40% 57%, 79% 11%, 92% 23%, 41% 83%, 6% 50%, 17% 36%);
+clip-path: polygon(40% 57%, 79% 11%, 92% 23%, 41% 83%, 6% 50%, 17% 36%); 
+transform: scale(0.6,0.6) ;
+-webkit-transform: scale(0.6,0.6) ;
+}
+
+/* Задаем внешний вид для нашего кастомного чекбокса. Все обязательные свойства прокомментированы, остальные же свойства меняйте по вашему усмотрению */
+.ui_checkbox_1{
+position: relative;      /* Обязательно задаем, чтобы мы могли абсолютным образом позиционировать псевдоэлемент внютри нашего кастомного чекбокса */
+width: 1.25rem;             /* Обязательно задаем ширину */
+height: 1.25rem;            /* Обязательно задаем высоту */
+border: 1px solid #3A3D44;
+background: #0B0D11; 
+}
+/* Аналогично */
+.ui_checkbox_1:hover {}
+.ui_checkbox_1:active {}
+
+
+
+/* Кастомный чекбокс и лейбл центрируем по вертикали. Если вам это не требуется, то вы можете убрать свойство vertical-align: middle из данного правила, но свойство display: inline-block обязательно должно быть */
+.ui_checkbox_1,.ui_checkbox_1_label {
+display: inline-block;
+vertical-align: middle;
+cursor: pointer;
+-webkit-user-select: none;
+-moz-user-select: none;
+}
+
+.ui_checkbox_1_label {
+font-family: Helvetica;
+/* font-family: Arial; */
+color: #ffffff;
+font-size: 0.875rem;
+padding-left:0.25rem;
+}
+
+
+
+
+/* Радиокнопка */
+
+.ui_real_radio {
+display: none;
+}
+
+.ui_radio_1 {
+background: #0B0D11; 
+border: 1px solid #3E3E40;
+border-radius: 50%;
+width: 1.25rem;             /* Обязательно задаем ширину */
+height: 1.25rem; 
+position: relative;      /* Обязательно задаем, чтобы мы могли абсолютным образом позиционировать псевдоэлемент внютри нашего кастомного чекбокса */
+}
+
+.ui_real_radio:checked + .ui_radio_1::before {
+background: #0C7ECB;
+border-radius: 50%;
+content: "";
+display: block;
+position: absolute;
+top:  0.3125rem;   
+right: 0.3125rem;
+bottom: 0.3125rem;
+left: 0.3125rem;
+}
+
+
+.ui_radio_1,.ui_radio_1_label_1 {
+display: inline-block;
+vertical-align: middle;
+cursor: pointer;
+-webkit-user-select: none;
+-moz-user-select: none;
+}
+
+.ui_radio_1_label_1 {
+font-family: Arial;
+color: #ffffff;
+font-size: 0.875rem;
+padding-left:0.25rem;
+}
+
+
+
+
+
+
+.ui_real_select {
+width: 20rem; 
+height: 2.125rem; /* 34px; */
+
+font-family: Arial;
+-webkit-appearance: none;
+-moz-appearance: none;
+-ms-appearance: none;
+appearance: none;
+outline: 0;
+box-shadow: none;
+
+border: 1px solid #333333;
+background: #121212;
+background-image: none;
+  
+width: 100%;
+height: 100%;
+margin: 0;
+padding: 0 0 0 .5rem;
+color: #ffffff;
+cursor: pointer;
+  
+}
+
+
+
+
+
+
+
+/* Прячем чекбоксы */
+.ui_tabs_1>input,.ui_tabs_2>input
+{
+display: none;
+position: absolute;
+}
+
+/* Базовый контейнер табов */
+.ui_tabs_1,.ui_tabs_2 
+{
+padding: 0px;
+margin: 0 auto;
+}
+
+/* Стили секций с содержанием */
+.ui_tabs_1>section,.ui_tabs_2>section
+{
+display: none;
+padding: 10px;
+background: #222A37;
+border: 1px solid #383838;
+color:#CDCFD2;
+font-family: Arial;
+font-size: .875rem;
+}
+
+/* Стили переключателей вкладок (табов) */
+.ui_tabs_1>label,.ui_tabs_2>label
+{
+display: inline-block;
+margin: 0 0 -1px;
+font-family: Arial;
+font-size: .875rem;
+padding: .625rem 1.25rem;
+text-align: center;
+color: #CDCFD2;
+border: 1px solid #383838;
+background: #171B23;
+-webkit-user-select: none;
+-moz-user-select: none;
+}
+
+/* Изменения стиля переключателей вкладок при наведении */
+.ui_tabs_1>label:hover,.ui_tabs_2>label:hover 
+{
+color: #ffffff;
+cursor: pointer;
+}
+/* Стили для активной вкладки */
+.ui_tabs_1>input:checked+label,.ui_tabs_2>input:checked+label
+{
+color: #ffffff;
+border-top: 1px solid #3A4353;
+border-bottom: 1px solid #222A37;
+background: #222A37;
+}
+
+
+
+/* 
+Активация секций с помощью псевдокласса :checked 
+В html коде табов (использующем этот css) важен порядок. Сначала input, потом его tab
+*/
+#ui_tab_1_1:checked~#content-ui_tab_1_1, #ui_tab_1_2:checked~#content-ui_tab_1_2, #ui_tab_1_3:checked~#content-ui_tab_1_3, #ui_tab_1_4:checked~#content-ui_tab_1_4 {display: block;}
+#ui_tab_1_5:checked~#content-ui_tab_1_5, #ui_tab_1_6:checked~#content-ui_tab_1_6, #ui_tab_1_7:checked~#content-ui_tab_1_7, #ui_tab_1_8:checked~#content-ui_tab_1_8 {display: block;}
+
+/* Панель 1 */
+.ui_panel_1
+{
+padding: 10px;
+background: #222A37;
+border: 1px solid #383838;
+color:#CDCFD2;
+font-family: Arial;
+font-size: .875rem;
+vertical-align: middle;
+}
+
+/* Панель 2 */
+.ui_panel_2
+{
+padding: 10px;
+background: #2C3748;
+color:#CDCFD2;
+font-family: Arial;
+font-size: .875rem;
+border: 1px solid #383838;
+vertical-align: middle;
+}
+
+/* Панель 3 */
+.ui_panel_3_header
+{
+font-weight: bold; 
+text-align: left;
+padding:8px;
+background-color: #2C3748;
+}
+.ui_panel_3_body
+{
+padding:8px;
+text-align: left;
+}
+.ui_panel_3
+{
+padding:0px;
+background-color: #1F2632;
+color:#CDCFD2;
+font-family: Arial;
+font-size: .875rem;
+border: 1px solid #383838;
+vertical-align: middle;
+}
+
+
+
+
+
+
+
+/* Таблица 1 */
+table.ui_table_1 thead th {
+font-family: Arial;
+font-size: .75rem; /* 12px; */
+font-weight: bold; 
+color: #CDCFD2;
+text-align: center;
+padding: .625rem; /* 10px; */
+}
+
+table.ui_table_1 {
+font-family: Arial;
+background-color: #1F2632;
+text-align: center;
+border-collapse: collapse;
+border-left:1px solid #323E50;
+border-right:1px solid #323E50;
+border-bottom:1px solid #323E50;
+}
+
+table.ui_table_1 td, table.ui_table_1 th{
+border-top:1px solid #333333;
+}
+
+
+table.ui_table_1 td {
+padding: 4px 4px;
+}
+
+table.ui_table_1 tbody td {
+font-size: .75rem; /* 12px; */
+color: #CDCFD2;
+padding: 10px;
+}
+table.ui_table_1 thead {
+background: #262F3E;
+padding: 4px 4px;
+}
+
+
+ 
+ 
+ /* Таблица 2 */
+table.ui_table_2 thead th {
+font-family: Arial;
+font-size: .75rem; /* 12px; */
+font-weight: bold; 
+color: #CDCFD2;
+text-align: center;
+padding: .625rem; /* 10px; */
+}
+
+table.ui_table_2 {
+font-family: Arial;
+background-color: #1F2632;
+text-align: center;
+border-collapse: collapse;
+border:1px solid #323E50;
+}
+
+table.ui_table_2 th{
+border-bottom:1px solid #323E50;
+}
+
+
+table.ui_table_2 td {
+padding: 4px 4px;
+}
+
+table.ui_table_2 tbody td {
+font-size: .75rem; /* 12px; */
+color: #CDCFD2;
+padding: 10px;
+}
+table.ui_table_2 thead {
+background: #262F3E;
+padding: 4px 4px;
+}
+ 
+ table.ui_table_2 tr:nth-child(even) {
+  background: #181E27;
+}
+ 
+ 
+ 
+ 
+/* Таблица 3 */
+ table.ui_table_3 thead th {
+font-family: Arial;
+font-size: .75rem; /* 12px; */
+font-weight: bold; 
+color: #CDCFD2;
+text-align: center;
+padding: .625rem; /* 10px; */
+}
+
+table.ui_table_3 {
+font-family: Arial;
+background-color: #1F2632;
+text-align: center;
+border-collapse: collapse;
+border:1px solid #2C3748;
+}
+
+table.ui_table_3 th{
+border-bottom:1px solid #2C3748;
+}
+
+
+table.ui_table_3 td {
+padding: 4px 4px;
+}
+
+table.ui_table_3 tbody td {
+font-size: .75rem; /* 12px; */
+color: #CDCFD2;
+padding: 10px;
+}
+table.ui_table_3 thead {
+background: #2C3748;
+padding: 4px 4px;
+}
+ 
+ table.ui_table_3 tr:nth-child(even) {
+  background: #181E27;
+}
+ 
+ 
+ 
+ 
+ 
+/* Таблица 4 */
+table.ui_table_4 thead th {
+font-family: Arial;
+font-size: .75rem; /* 12px; */
+font-weight: bold; 
+color: #CDCFD2;
+text-align: center;
+padding: .625rem; /* 10px; */
+}
+
+table.ui_table_4 {
+font-family: Arial;
+background-color: #1F2632;
+text-align: center;
+border-collapse: collapse;
+border:1px solid #323E50;
+}
+
+table.ui_table_4 th{
+border-bottom:1px solid #323E50;
+}
+
+
+table.ui_table_4 td {
+padding: 4px 4px;
+border:1px solid #323E50;
+}
+
+table.ui_table_4 tbody td {
+font-size: .75rem; /* 12px; */
+color: #CDCFD2;
+padding: 10px;
+}
+table.ui_table_4 thead {
+background: #262F3E;
+padding: 4px 4px;
+}
+ 
+ table.ui_table_4 tr:nth-child(even) {
+  background: #181E27;
+} 
+
+
+
+
+
+/* Таблица 5 */
+table.ui_table_5 thead th {
+font-family: Arial;
+font-size: .75rem; /* 12px; */
+font-weight: bold; 
+color: #CDCFD2;
+text-align: left;
+padding: .625rem; /* 10px; */
+}
+
+table.ui_table_5 {
+font-family: Arial;
+background-color: #1F2632;
+text-align: left;
+border-collapse: collapse;
+border-left:1px solid #323E50;
+border-right:1px solid #323E50;
+border-bottom:1px solid #323E50;
+}
+
+table.ui_table_5 td, table.ui_table_5 th{
+border-top:1px solid #333333;
+}
+
+
+table.ui_table_5 td {
+padding: 4px 4px;
+}
+
+table.ui_table_5 tbody td {
+font-size: .75rem; /* 12px; */
+color: #CDCFD2;
+padding: 10px;
+}
+table.ui_table_5 thead {
+background: #262F3E;
+padding: 4px 4px;
+}
+
+
+/* Таблица 6 */
+table.ui_table_6 thead th {
+font-family: Arial;
+font-size: .75rem; /* 12px; */
+font-weight: bold; 
+color: #CDCFD2;
+text-align: left;
+padding: .625rem; /* 10px; */
+}
+
+table.ui_table_6 {
+font-family: Arial;
+background-color: #1F2632;
+text-align: left;
+border-collapse: collapse;
+border-left:1px solid #323E50;
+border-right:1px solid #323E50;
+border-bottom:1px solid #323E50;
+}
+
+table.ui_table_6 td{
+border:1px solid #333333;
+}
+table.ui_table_6 th{
+border:1px solid #323E50;
+}
+
+
+
+table.ui_table_6 td {
+padding: 4px 4px;
+}
+
+table.ui_table_6 tbody td {
+font-size: .75rem; /* 12px; */
+color: #CDCFD2;
+padding: 10px;
+}
+table.ui_table_6 thead {
+background: #262F3E;
+padding: 4px 4px;
+}
+
+
+
+/* Рамка 1 */ 
+.ui_border_div_1
+{
+padding: 10px;
+background: #222A37;
+border: 1px solid #383838;
+color: #CDCFD2;
+font-family: Arial;
+font-size: .875rem;
+}
+
+/* Div с прокруткой */ 
+/* http://webkit-scroll-gen.sourceforge.net/ */
+.ui_scrollable_div_1
+{
+overflow-x: hidden; /* прокрутка по горизонтали */
+overflow-y: scroll; /* прокрутка по вертикали */
+padding: 10px;
+background: #222A37;
+border: 1px solid #383838;
+color: #CDCFD2;
+font-family: Arial;
+font-size: .875rem;
+}
+.ui_scrollable_div_1::-webkit-scrollbar {
+width: 0.4375rem; /* 7px; */
+height: 0.4375rem; /* 7px; */
+}
+.ui_scrollable_div_1::-webkit-scrollbar-button {
+width: 0.125rem; /* 2px; */
+height: 0.125rem; /* 2px; */
+}
+.ui_scrollable_div_1::-webkit-scrollbar-thumb {
+  background: #484b4f;
+  border: 0px none #ffffff;
+  border-radius: 3px;
+}
+.ui_scrollable_div_1::-webkit-scrollbar-thumb:hover {
+  background: #616469;
+}
+.ui_scrollable_div_1::-webkit-scrollbar-thumb:active {
+  background: #616469;
+}
+.ui_scrollable_div_1::-webkit-scrollbar-track {
+  background: #181E27;
+  border: 0px none #ffffff;
+  border-radius: 0px;
+}
+
+.ui_scrollable_div_1::-webkit-scrollbar-corner {
+ /*  background: transparent; */
+}
+
+/* Текстовое поле */ 
+.ui_textarea_1
+{
+outline:none;
+resize:none; /* убираем уголок ресайза */
+min-width:100px;
+min-height:100px;
+overflow-x: hidden; /* прокрутка по горизонтали */
+overflow-y: scroll; /* прокрутка по вертикали */
+padding: 10px;
+background: #222A37;
+border: 1px solid #383838;
+color: #CDCFD2;
+font-family: Arial;
+font-size: .875rem;
+}
+.ui_textarea_1::-webkit-scrollbar {
+width: 0.4375rem; /* 7px; */
+height: 0.4375rem; /* 7px; */
+}
+.ui_textarea_1::-webkit-scrollbar-button {
+width: 0.125rem; /* 2px; */
+height: 0.125rem; /* 2px; */
+}
+.ui_textarea_1::-webkit-scrollbar-thumb {
+  background: #484b4f;
+  border: 0px none #ffffff;
+  border-radius: 3px;
+}
+.ui_textarea_1::-webkit-scrollbar-thumb:hover {
+  background: #616469;
+}
+.ui_textarea_1::-webkit-scrollbar-thumb:active {
+  background: #616469;
+}
+.ui_textarea_1::-webkit-scrollbar-track {
+  background: #181E27;
+  border: 0px none #ffffff;
+  border-radius: 0px;
+}
+
+.ui_textarea_1::-webkit-scrollbar-corner {
+ /*  background: transparent; */
+}
+
+
+ /* Надпись сверху - дополнение к любому div */ 
+
+ .div_top_caption_1_out {
+max-width: 400px;
+height:1.5rem; /* 24px; */
+border: 1px solid #383838;
+background: #2C3748;  
+position: relative;
+top: 10px;
+left: 10px;
+padding-left:4px;
+}
+ .div_top_caption_1_in {
+font-family: Arial;
+font-size: .75rem;
+font-weight: bold;
+color: #CDCFD2;
+position: absolute;
+margin-top:5px;
+
+}
+ 
+ 
+/* Символ x */
+.ui_close_symbol_1 {
+content:'';
+width:0.875rem; /* 14px; */
+height:0.875rem; /* 14px; */
+background: #0C7ECB;
+display: inline-block;
+/* https://bennettfeely.com/clippy/ */
+/* transform: scale(0.5,0.5) ; */
+clip-path: polygon(0 10%, 10% 0, 50% 40%, 90% 0, 100% 10%, 60% 50%, 100% 90%, 90% 100%, 50% 60%, 10% 100%, 0 90%, 40% 50%);
+transition-property: background-color;
+transition-duration: 100ms;
+transition-timing-function: ease;
+transition-delay: 0s; 
+}
+ 
+.ui_close_symbol_1:hover {
+background: #00AEFF; 
+}
+.ui_close_symbol_1:active {
+background: #095386; 
+}
+
+ 
+
+ 
+
+/* Общая часть для кнопок влево и вправо - задает границы кнопки. Служит для оформления - можно не использовать */ 
+ .ui_arrow_button_out_1
+{
+vertical-align: bottom;
+width:1.625rem; /* 26px; */
+height:1.625rem; /* 26px; */
+border: 0.0625rem solid #383838; /* 1px; */
+display: inline-block;
+background: #171B2;
+}
+.ui_arrow_button_out_1:hover {
+color: #ffffff;
+border: 0.0625rem  solid #3A4353;
+}
+.ui_arrow_button_out_1:active {
+color: #B3B3B3;
+border: 0.0625rem  solid #2F3239;
+background: #13161C; 
+}
+/* Общая часть для кнопок влево и вправо - задает границы кнопки. Служит для оформления - можно не использовать */ 
+ .ui_arrow_button_out_2
+{
+vertical-align: bottom;
+width:1.625rem; /* 26px; */
+height:1.625rem; /* 26px; */
+border: 0.0625rem  solid #383838;
+display: inline-block;
+background: #181E27;
+
+}
+.ui_arrow_button_out_2:hover {
+border: 0.0625rem  solid #44484E;
+background: #0E1015;
+}
+.ui_arrow_button_out_2:focus {
+border: 0.0625rem  solid #1E5F99;
+background: #0B0D11;
+}
+
+
+
+/* Кнопка со стрелкой влево */ 
+.ui_left_arrow_button_1_in
+{
+background: #0C7ECB;
+width:1.625rem; /* 26px; */
+height:1.625rem; /* 26px; */
+content:'';
+clip-path: polygon(0 34%, 50% 80%, 100% 34%, 80% 34%, 50% 60%, 20% 34%);
+transform: scale(0.5,0.5) rotate(90deg);
+}
+/* Кнопка со стрелкой вправо */ 
+.ui_right_arrow_button_1_in
+{
+background: #0C7ECB;
+width:1.625rem; /* 26px; */
+height:1.625rem; /* 26px; */
+content:'';
+clip-path: polygon(0 34%, 50% 80%, 100% 34%, 80% 34%, 50% 60%, 20% 34%);
+transform: scale(0.5,0.5) rotate(-90deg);
+}
+
+
+
+
+
+
+ /* Картинка календаря */ 
+.ui-datepicker-trigger 
+{
+/* background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAQCAYAAADJViUEAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAABUSURBVHjaYqyurv7PAAQtLS2MILqmpgbMxwbQ1TDCNJMDmBgoABRpZoH6hWSNQH/TwNkgU0EYH5tiPzOAooocANLHRIpTh6izqZrCKHI2RbkKIMAA00PZfmIz24oAAAAASUVORK5CYII="); */
+
+position: relative; 
+top:6px;
+cursor: pointer;
+margin-left: -1.3rem; 
+
+}
+ 
+/* Общий вид поля для ввода даты */
+.ui_datapicker_1
+{
+vertical-align: middle;
+display: inline-block;
+/*
+width: 5.6rem; 
+height:1.125rem; 
+*/
+width:6.4rem;
+height:1.74rem;
+
+padding-left:0.125rem; /* 2px; */
+padding: 0.25rem;/*  4px; */
+background: #181E27;
+border: 0.0625rem  solid #383838;
+color: #CDCFD2;
+font-family: Arial;
+font-size: .875rem;
+outline:none;
+transition-property: background,border;
+transition-duration: 200ms;
+transition-timing-function: ease;
+transition-delay: 0s;
+}
+.ui_datapicker_1:hover {
+border: 0.0625rem  solid #44484E;
+background: #0E1015;
+color: #ffffff;
+}
+.ui_datapicker_1:focus {
+border: 0.0625rem  solid #1E5F99;
+background: #0B0D11;
+color: #ffffff;
+}
+.ui-datepicker th
+{
+color: #CDCFD2 !important;
+}
+
+
+/* Модальное окно */
+.ui_modal_window_1
+{
+/* Позиционирование элемента */
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+/* Оформление элемента */
+border: 1px solid #3D414A; 
+outline: 1px solid #000000; 
+background: #13171E;
+padding-left:1.25rem;
+padding-right: 1.25rem;
+padding-bottom: 1.25rem;
+padding-top: 1.25rem;
+color:#CDCFD2;
+font-family: Arial;
+font-size: .875rem;
+vertical-align: top;  
+
+
+}
+
+
+
+
+
+
+
+
+
+
+.selectDay
+{
+background: #222A37 !important;
+
+}
+
+ 
+.ui-datepicker-calendar
+{
+border: 1px solid #383838 !important;
+background: #171B23 !important;
+}
+ 
+.ui-datepicker
+{
+padding: 10px !important;
+background: #222A37 !important;
+border: 1px solid #383838 !important;
+color:#CDCFD2 !important;
+font-family: Arial !important;
+font-size: .875rem !important;
+border-radius:0px !important;
+
+
+}
+
+.ui-datepicker-header
+{
+padding: 1px !important;
+border-radius:0px !important;
+background: #000000 !important;
+height:28px;
+border: 1px solid #383838 !important;
+border-bottom: 0px !important;
+background: #171B23 !important;
+
+}
+
+.ui-datepicker-prev, .ui-datepicker-next
+{
+display:none;
+}
+
+.ui-datepicker-month
+{
+position: relative !important;
+left:3px !important;
+
+}
+
+
+.ui-datepicker-month, .ui-datepicker-year
+{
+left:0px !important;
+margin-top:2px !important;
+vertical-align: middle;
+/* width:80px !important; */
+height: 24px; 
+padding: 0.25rem;/*  4px; */
+background: #181E27;
+border: 0.0625rem  solid #383838;
+color: #CDCFD2;
+font-family: Arial;
+font-size: .875rem;
+outline:none;
+transition-property: background,border;
+transition-duration: 200ms;
+transition-timing-function: ease;
+transition-delay: 0s;
+}
+.ui-datepicker-month, .ui-datepicker-year:hover {
+border: 0.0625rem  solid #44484E;
+background: #0E1015;
+color: #ffffff;
+}
+.ui-datepicker-month, .ui-datepicker-year:focus {
+border: 0.0625rem  solid #1E5F99;
+background: #0B0D11;
+color: #ffffff;
+}
+
+
+
+.ui-datepicker-title
+{
+ margin: 0 !important;
+ }
+ 
+ 
+ /* Слайдер с 2 ползунками выбора перезаписываем стили jquery-ui.css */
+/* Слайдер */
+.ui-slider
+ {
+width: 100% !important;
+height: 5px !important;
+cursor: pointer !important;
+background: #383838 !important;
+border-radius: 1px !important;
+border: 0px solid #000000 !important;
+animate: 0.2s !important;
+}
+ /* Ползунок */
+.ui-slider-handle 
+{
+border: 1px solid #00AEFF !important;
+height: 18px !important;
+width: 14px !important;
+background: #0E86CA !important;
+cursor: pointer !important;
+-webkit-appearance: none !important;
+border-radius: 1px !important;
+margin-top: -4px !important;
+outline: none !important;
+}
+ /* Середина между ползунками */
+.ui-slider .ui-slider-range 
+{
+background: #4098BF !important;
+}
+ 
+ 
+
+ 
+ 
+ 
+/* Слайдер с одним ползунком выбора */
+ .ui_input_range_1 
+ {
+height: 16px;
+-webkit-appearance: none;
+background: transparent;
+}
+.ui_input_range_1:focus {outline: none;}
+/*Chrome*/
+.ui_input_range_1::-webkit-slider-runnable-track 
+{
+width: 100%;
+height: 5px;
+cursor: pointer;
+background: #383838;
+border-radius: 1px;
+border: 0px solid #000000;
+animate: 0.2s;
+}
+.ui_input_range_1::-webkit-slider-thumb 
+{
+border: 1px solid #00AEFF;
+height: 18px;
+width: 14px;
+background: #0E86CA;cursor: pointer;
+-webkit-appearance: none;
+margin-top: -7px;
+}
+.ui_input_range_1:focus::-webkit-slider-runnable-track {background: #383838;}
+/*Mozilla*/
+.ui_input_range_1::-moz-range-track {
+width: 100%;
+height: 5px;
+cursor: pointer;
+background: #383838;
+border-radius: 1px;
+border: 0px solid #000000;
+animate: 0.2s;
+}
+.ui_input_range_1::-moz-range-thumb {
+border: 1px solid #00AEFF;
+height: 18px;
+width: 14px;
+background: #0E86CA;cursor: pointer;
+-webkit-appearance: none;
+margin-top: -7px;
+}
+/*IE*/
+.ui_input_range_1::-ms-track {
+width: 100%;
+height: 5px;
+cursor: pointer;
+background: #383838;
+border-radius: 1px;
+border: 0px solid #000000;
+animate: 0.2s;
+}
+.ui_input_range_1::-ms-fill-lower {
+  background: #2497E3;
+  border: 0px solid #000000;
+  border-radius: 2px;
+  box-shadow: 0px 0px 0px #000000;
+}
+.ui_input_range_1::-ms-fill-upper {
+  background: #2497E3;
+  border: 0px solid #000000;
+  border-radius: 2px;
+  box-shadow: 0px 0px 0px #000000;
+}
+.ui_input_range_1::-ms-thumb {
+  margin-top: 1px;
+  box-shadow: 0px 0px 0px #000000;
+  border: 1px solid #2497E3;
+  height: 18px;
+  width: 18px;
+  border-radius: 25px;
+  background: #A1D0FF;
+  cursor: pointer;
+}
+.ui_input_range_1:focus::-ms-fill-lower {
+  background: #2497E3;
+}
+.ui_input_range_1:focus::-ms-fill-upper {
+  background: #2497E3;
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
